@@ -1,19 +1,26 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
-public class Main {
-    public static String [][] panel = new String[4][4];
-    public static String [][] cards = new String[4][4];
+public class MemoryCardClass {
+    private static int rowSize;
+    private static int columnSize;
+
+    public static String [][] panel = new String[10][10];
+    public static String [][] cards = new String[10][10];
     public static Scanner input = new Scanner(System.in);
+
+    public void setSize(int rowSize, int columnSize){
+        this.rowSize = rowSize;
+        this.columnSize = columnSize;
+    }
 
     //Making the panel
     public static void printPanel(){
-        for(int i = 0; i < 4; i++){ //Number of rows
+        for(int i = 0; i < rowSize; i++){ //Number of rows
             System.out.print("|");
 
-            for(int j = 0; j < 4; j++){ //Number of columns
+            for(int j = 0; j < columnSize; j++){ //Number of columns
                 System.out.print(panel[i][j]);
                 System.out.print("|");
             }
@@ -24,12 +31,22 @@ public class Main {
     public static void shuffleCards(){
         Random random = new Random();
         //A list of letters, doubled because of pairing
-        ArrayList<String> letters = new ArrayList<>(Arrays.asList("A","B","C","D","E","F","G","H",
-                                                                  "A","B","C","D","E","F","G","H"));
+        ArrayList<String> letters = new ArrayList<String>();
+
+        //Amount of letter for that row and column size
+        int letterSize = rowSize * columnSize / 2;
+
+        for(int i = 0; i < (letterSize); i++){
+            char letter = 'A';
+            int convert = letter + i;
+            String s = String.valueOf((char)convert);
+            letters.add(s);
+            letters.add(s);
+        }
 
         //Randomizes the card placements
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
+        for(int i = 0; i < rowSize; i++){
+            for(int j = 0; j < columnSize; j++){
                 int index = random.nextInt(letters.size());
                 cards[i][j] = letters.get(index);
                 //Prevents repetition
@@ -43,17 +60,17 @@ public class Main {
         while(true){
             if(!gameOver()){
                 //First card choice
-                System.out.println("Row: 1-4");
+                System.out.print("Row: ");
                 int row1 = input.nextInt();
-                while(!(1 <= row1 && row1 <= 4)){ //If out of bounds
-                    System.out.println("Please input 1-4");
+                while(!(1 <= row1 && row1 <= rowSize)){ //If out of bounds
+                    System.out.println("Please input 1-" + rowSize);
                     row1 = input.nextInt();
                 }
 
-                System.out.println("Column: 1-4");
+                System.out.print("Column: ");
                 int column1 = input.nextInt();
-                while(!(1 <= column1 && column1 <= 4)){ //If out of bounds
-                    System.out.println("Please input 1-4");
+                while(!(1 <= column1 && column1 <= columnSize)){ //If out of bounds
+                    System.out.println("Please input 1-" + columnSize);
                     column1 = input.nextInt();
                 }
 
@@ -71,17 +88,17 @@ public class Main {
                 }
 
                 //Second card choice
-                System.out.println("Row: 1-4");
+                System.out.print("Row: ");
                 int row2 = input.nextInt();
-                while(!(1 <= row2 && row2 <= 4)){ //If out of bounds
-                    System.out.println("Please input 1-4");
+                while(!(1 <= row2 && row2 <= rowSize)){ //If out of bounds
+                    System.out.println("Please input 1-" + rowSize);
                     row2 = input.nextInt();
                 }
 
-                System.out.println("Column: 1-4");
+                System.out.print("Column: ");
                 int column2 = input.nextInt();
-                while(!(1 <= column2 && column2 <= 4)){ //If out of bounds
-                    System.out.println("Please input 1-4");
+                while(!(1 <= column2 && column2 <= columnSize)){ //If out of bounds
+                    System.out.println("Please input 1-" + columnSize);
                     column2 = input.nextInt();
                 }
 
@@ -123,55 +140,14 @@ public class Main {
 
     //Checks if there's an uncovered pair yet
     public static boolean gameOver(){
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
+        for(int i = 0; i < rowSize; i++){
+            for(int j = 0; j < columnSize; j++){
                 if(panel[i][j].equals(" - ")){
                     return false;
                 }
             }
         }
         return true;
-    }
-
-    public static void main(String[] args){
-        boolean flag = true;
-        System.out.println("Welcome to Memory Card Game.");
-        //Choosing to play or quit
-        do{
-            System.out.println("1. New game");
-            System.out.println("2. Quit");
-            System.out.print("Choice >> ");
-            int option = input.nextInt();
-
-            if(!(option == 1 || option == 2)){
-                option = 3;
-            }
-            switch(option){
-                case 1: 
-                    shuffleCards();
-
-                    //Set everything to " - "
-                    for(int i = 0; i < 4; i++){
-                        for(int j = 0; j < 4; j++){
-                            panel[i][j] = " - ";
-                        }
-                    }
-
-                    printPanel();
-                    checkInput(cards);
-                    break;
-
-                case 2: 
-                    System.out.println("Exitting...");
-                    flag = false;
-                    break;
-                
-                case 3:
-                    System.out.println("Choose either 1 or 2.");
-                    break;
-            }
-        }while(flag);  
-    input.close();
     }
 
 }
