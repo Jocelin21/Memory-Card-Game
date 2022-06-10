@@ -26,10 +26,21 @@ public class MemoryCardDriver extends MemoryCardClass {
                         g1.setSize(4, 4);
 
                     }else if(option2 == 2){ //Customize
-                        System.out.print("Row Size >> ");
-                        int rowSize = input.nextInt();
-                        System.out.print("Column Size >> ");
-                        int columnSize = input.nextInt();
+                        int rowSize;
+                        int columnSize;
+                        do{
+                            System.out.print("Row Size >> ");
+                            rowSize = input.nextInt();
+
+                            System.out.print("Column Size >> ");
+                            columnSize = input.nextInt();
+
+                            if (rowSize * columnSize % 2 == 0){
+                                break;
+                            }else{
+                                System.out.println("One of them must be even");
+                            }
+                        }while(true);
                         g1.setSize(rowSize, columnSize);
                     }
     

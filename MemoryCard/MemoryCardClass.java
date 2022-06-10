@@ -30,12 +30,12 @@ public class MemoryCardClass {
 
     public static void shuffleCards(){
         Random random = new Random();
-        //A list of letters, doubled because of pairing
         ArrayList<String> letters = new ArrayList<String>();
 
         //Amount of letter for that row and column size
         int letterSize = rowSize * columnSize / 2;
 
+        //Making the list of letters depending on the sizes
         for(int i = 0; i < (letterSize); i++){
             char letter = 'A';
             int convert = letter + i;
@@ -76,7 +76,7 @@ public class MemoryCardClass {
 
                 //If the pair has been found already
                 if(!panel[row1-1][column1-1].equals(" - ")){
-                    System.out.println("Already Entered!");
+                    System.out.println("Choose another one!");
                     System.out.println();
 
                     printPanel();
@@ -104,7 +104,7 @@ public class MemoryCardClass {
 
                 //If the pair has been found already
                 if(!panel[row2-1][column2-1].equals(" - ")){
-                    System.out.println("Already Entered!");
+                    System.out.println("Choose another one!");
 
                     //Closes the card
                     panel[row1-1][column1-1] = " - ";
