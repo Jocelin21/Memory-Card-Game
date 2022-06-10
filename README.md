@@ -1,4 +1,7 @@
-# Memory-Card-Game
-Final Project OOP
-Name = Jocelin Wilson
-Class = L2BC
+# Final Project OOP
+
+Name = Jocelin Wilson <br />
+NIM = 2501963330 <br />
+Class = L2BC <br />
+Project = Memory Card Game <br />
+
