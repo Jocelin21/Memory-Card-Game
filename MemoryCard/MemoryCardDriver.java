@@ -37,7 +37,7 @@ public class MemoryCardDriver extends MemoryCardClass {
 
                             if (rowSize * columnSize % 2 == 0){
                                 break;
-                            }else{
+                            }else{ //The size must be even because of pairing
                                 System.out.println("One of them must be even");
                             }
                         }while(true);
