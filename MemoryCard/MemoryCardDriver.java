@@ -23,11 +23,12 @@ public class MemoryCardDriver extends MemoryCardClass {
                     int option2 = input.nextInt();
 
                     if(option2 == 1){
-                        g1.setSize(4, 4);
+                        g1.setSize();
 
                     }else if(option2 == 2){ //Customize
                         int rowSize;
                         int columnSize;
+                        
                         do{
                             System.out.print("Row Size >> ");
                             rowSize = input.nextInt();
@@ -46,10 +47,10 @@ public class MemoryCardDriver extends MemoryCardClass {
     
                     shuffleCards();
 
-                    //Set everything to " - "
-                    for(int i = 0; i < 4; i++){
-                        for(int j = 0; j < 4; j++){
-                            panel[i][j] = " - ";
+                    //Set everything to " ? "
+                    for(int i = 0; i < g1.getRowSize(); i++){
+                        for(int j = 0; j < g1.getColumnSize(); j++){
+                            panel[i][j] = " ? ";
                         }
                     }
 
@@ -57,12 +58,12 @@ public class MemoryCardDriver extends MemoryCardClass {
                     checkInput(cards);
                     break;
 
-                case 2: 
+                case 2: //Quit
                     System.out.println("Goodbye :]");
                     flag = false;
                     break;
                 
-                case 3:
+                case 3: //Out of bounds
                     System.out.println("Choose either 1 or 2.");
                     break;
             }

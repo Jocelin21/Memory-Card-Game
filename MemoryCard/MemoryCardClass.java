@@ -10,9 +10,22 @@ public class MemoryCardClass {
     public static String [][] cards = new String[10][10];
     public static Scanner input = new Scanner(System.in);
 
+    public void setSize(){
+        this.rowSize = 4;
+        this.columnSize = 4;
+    }
+
     public void setSize(int rowSize, int columnSize){
         this.rowSize = rowSize;
         this.columnSize = columnSize;
+    }
+
+    public int getRowSize(){
+        return this.rowSize;
+    }
+
+    public int getColumnSize(){
+        return this.columnSize;
     }
 
     //Making the panel
@@ -63,19 +76,19 @@ public class MemoryCardClass {
                 System.out.print("Row: ");
                 int row1 = input.nextInt();
                 while(!(1 <= row1 && row1 <= rowSize)){ //If out of bounds
-                    System.out.println("Please input 1-" + rowSize);
+                    System.out.println("Please input 1 - " + rowSize);
                     row1 = input.nextInt();
                 }
 
                 System.out.print("Column: ");
                 int column1 = input.nextInt();
                 while(!(1 <= column1 && column1 <= columnSize)){ //If out of bounds
-                    System.out.println("Please input 1-" + columnSize);
+                    System.out.println("Please input 1 - " + columnSize);
                     column1 = input.nextInt();
                 }
 
                 //If the pair has been found already
-                if(!panel[row1-1][column1-1].equals(" - ")){
+                if(!panel[row1-1][column1-1].equals(" ? ")){
                     System.out.println("Choose another one!");
                     System.out.println();
 
@@ -91,23 +104,23 @@ public class MemoryCardClass {
                 System.out.print("Row: ");
                 int row2 = input.nextInt();
                 while(!(1 <= row2 && row2 <= rowSize)){ //If out of bounds
-                    System.out.println("Please input 1-" + rowSize);
+                    System.out.println("Please input 1 - " + rowSize);
                     row2 = input.nextInt();
                 }
 
                 System.out.print("Column: ");
                 int column2 = input.nextInt();
                 while(!(1 <= column2 && column2 <= columnSize)){ //If out of bounds
-                    System.out.println("Please input 1-" + columnSize);
+                    System.out.println("Please input 1 - " + columnSize);
                     column2 = input.nextInt();
                 }
 
                 //If the pair has been found already
-                if(!panel[row2-1][column2-1].equals(" - ")){
+                if(!panel[row2-1][column2-1].equals(" ? ")){
                     System.out.println("Choose another one!");
 
                     //Closes the card
-                    panel[row1-1][column1-1] = " - ";
+                    panel[row1-1][column1-1] = " ? ";
                     System.out.println();
 
                     printPanel();
@@ -125,8 +138,8 @@ public class MemoryCardClass {
                         printPanel();
                         System.out.println("");
                         //Closes the card
-                        panel[row1-1][column1-1] = " - ";
-                        panel[row2-1][column2-1] = " - ";
+                        panel[row1-1][column1-1] = " ? ";
+                        panel[row2-1][column2-1] = " ? ";
                         printPanel();
                     }
                 }
@@ -142,7 +155,7 @@ public class MemoryCardClass {
     public static boolean gameOver(){
         for(int i = 0; i < rowSize; i++){
             for(int j = 0; j < columnSize; j++){
-                if(panel[i][j].equals(" - ")){
+                if(panel[i][j].equals(" ? ")){
                     return false;
                 }
             }
