@@ -1,4 +1,4 @@
-# Final Project OOP
+# Final Project OOP S2
 
 Name = Jocelin Wilson <br />
 NIM = 2501963330 <br />
