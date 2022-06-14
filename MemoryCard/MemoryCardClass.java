@@ -71,7 +71,7 @@ public class MemoryCardClass {
     //Playing and checking
     public static void checkInput(String [][] cards){
         while(true){
-            if(!gameOver()){
+            if(!pairComplete()){
                 //First card choice
                 System.out.print("Row: ");
                 int row1 = input.nextInt();
@@ -152,7 +152,7 @@ public class MemoryCardClass {
     }
 
     //Checks if there's an uncovered pair yet
-    public static boolean gameOver(){
+    public static boolean pairComplete(){
         for(int i = 0; i < rowSize; i++){
             for(int j = 0; j < columnSize; j++){
                 if(panel[i][j].equals(" ? ")){
