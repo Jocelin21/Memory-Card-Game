@@ -87,7 +87,7 @@ public class MemoryCardClass {
                     column1 = input.nextInt();
                 }
 
-                //If the pair has been found already
+                //If the card has been opened already
                 if(!panel[row1-1][column1-1].equals(" ? ")){
                     System.out.println("Choose another one!");
                     System.out.println();
@@ -115,7 +115,7 @@ public class MemoryCardClass {
                     column2 = input.nextInt();
                 }
 
-                //If the pair has been found already
+                //If the card has been opened already
                 if(!panel[row2-1][column2-1].equals(" ? ")){
                     System.out.println("Choose another one!");
 
